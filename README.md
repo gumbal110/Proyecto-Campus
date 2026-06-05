@@ -1,20 +1,38 @@
-### **Fase 5 – DApp del Campus**
-- Aplicación descentralizada conectada al ecosistema.
-- Gestión de perfiles, logros y actividades.
-- Integración completa con Discord y VRChat.
-- Expansión hacia un modelo de aprendizaje gamificado.
+# Proyecto Campus — Interfaz web estática
 
----
+Sitio estático de demostración para el "Campus Tlamatiliztli". Contiene una pantalla de bienvenida,
+un botón principal para abrir el formulario de registro y un formulario que guarda datos en
+`localStorage`.
 
-## 🧩 Requerimientos iniciales
-- Botones con bordes ondulados.
-- Botón inferior izquierdo: "Registrarse e Iniciar Sesión".
-- Formulario de registro con nombre completo, país y correo electrónico.
-- Conexión futura con **Blockchain** para registro seguro y validación de logros.
+Estructura principal:
 
----
+- `index.html` — página principal.
+- `estilo.css` — estilos (extraídos del HTML).
+- `codigo.js` — comportamiento JavaScript (extraído del HTML).
+- `assets/` — imágenes y recursos.
 
-## ⚙️ Instalación
-1. Clonar el repositorio:
-   ```bash
-   git clone https://github.com/gumbal110/Proyecto-Campus.git
+Registro y datos:
+
+- Los registros se almacenan en `localStorage` bajo la clave `campusTlamatiliztliRegistrations`.
+
+Cómo probar localmente
+
+1) Abrir directamente en el navegador (doble clic en `index.html`).
+
+2) O servir con un servidor HTTP simple (recomendado para que las rutas de `assets/`
+   funcionen correctamente). Desde PowerShell o una terminal en la carpeta `Proyecto`:
+
+```powershell
+# Si tienes Python 3 instalado
+python -m http.server 8000
+
+# Luego abrir http://localhost:8000/Proyecto/index.html
+```
+
+Edición rápida
+
+- Modifica la estructura y el texto en `index.html`.
+- Cambia estilos en `estilo.css`.
+- Cambia la lógica en `codigo.js`.
+
+¿Quieres que haga un commit con estos cambios o que pruebe la página en un servidor local ahora?
