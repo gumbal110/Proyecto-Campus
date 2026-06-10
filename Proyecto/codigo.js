@@ -1,13 +1,38 @@
 // Código extraído de index.html
 const openRegistration = document.querySelector("#openRegistration");
+const stickyOpenRegistration = document.querySelector("#stickyOpenRegistration");
 const form = document.querySelector("#registrationForm");
 const message = document.querySelector("#formMessage");
 
-openRegistration.addEventListener("click", () => {
+const handleRegistrationClick = () => {
 	document.querySelector("#registro").scrollIntoView({ behavior: "smooth" });
 	window.history.replaceState(null, "", "#registro");
 	setTimeout(() => document.querySelector("#fullName").focus(), 650);
-});
+};
+
+if (openRegistration) {
+	openRegistration.addEventListener("click", handleRegistrationClick);
+}
+
+if (stickyOpenRegistration) {
+	stickyOpenRegistration.addEventListener("click", handleRegistrationClick);
+}
+
+// Control de visibilidad del Sticky Header al hacer scroll
+const stickyHeader = document.querySelector(".sticky-header");
+const heroLogo = document.querySelector(".brand-mark");
+
+if (stickyHeader && heroLogo) {
+	window.addEventListener("scroll", () => {
+		const logoRect = heroLogo.getBoundingClientRect();
+		// Si el logo del hero se desplaza hacia arriba fuera de la pantalla
+		if (logoRect.bottom < 0) {
+			stickyHeader.classList.add("visible");
+		} else {
+			stickyHeader.classList.remove("visible");
+		}
+	});
+}
 
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
@@ -47,4 +72,39 @@ form.addEventListener("submit", (event) => {
 	message.textContent = "Registro completado. Tus datos se guardaron temporalmente.";
 	message.classList.add("success");
 });
+
+// Pantalla de carga (Loader) por 2.5 segundos
+window.addEventListener("DOMContentLoaded", () => {
+	const loader = document.querySelector("#loader-wrapper");
+	if (loader) {
+		setTimeout(() => {
+			loader.classList.add("fade-out");
+			// Eliminamos el elemento del DOM al finalizar la animación para no obstaculizar interacciones
+			loader.addEventListener("transitionend", () => {
+				loader.remove();
+			});
+		}, 2500);
+	}
+});
+
+// Interactividad del menú desplegable "Cursos" (Hover y Click)
+const dropdown = document.querySelector(".nav-item.dropdown");
+const dropdownTrigger = document.querySelector(".dropdown-trigger");
+
+if (dropdown && dropdownTrigger) {
+	dropdownTrigger.addEventListener("click", (event) => {
+		event.stopPropagation();
+		const isOpen = dropdown.classList.contains("open");
+		dropdownTrigger.setAttribute("aria-expanded", !isOpen);
+		dropdown.classList.toggle("open");
+	});
+
+	// Cerrar el menú si se hace clic en cualquier parte fuera de él
+	document.addEventListener("click", (event) => {
+		if (!dropdown.contains(event.target)) {
+			dropdownTrigger.setAttribute("aria-expanded", "false");
+			dropdown.classList.remove("open");
+		}
+	});
+}
 

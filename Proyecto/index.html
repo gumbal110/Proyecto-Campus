@@ -1,112 +1,141 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Campus Tlamatiliztli</title>
-    <link rel="stylesheet" href="estilo.css">
-  </head>
-  <body>
-    <section class="screen" aria-label="Interfaz inicial">
-      <header>
-        <div class="brand" aria-label="Campus Tlamatiliztli">
-          <img
-            class="brand-mark"
-            src="assets/T-Logo.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <div>
-            <h1>Campus Tlamatiliztli</h1>
-            <span>Conocimiento conectado</span>
-          </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Campus Tlamatiliztli</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+  <!-- Pantalla de carga inicial (Loader) -->
+  <div id="loader-wrapper">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Barra de navegación fija superior (Sticky Header) -->
+  <header class="sticky-header">
+    <div class="sticky-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <img src="assets/T-Logo.png" alt="Campus Tlamatiliztli" />
+      <span>Campus Tlamatiliztli</span>
+    </div>
+    <div class="sticky-nav">
+      <div class="nav-item dropdown">
+        <button class="dropdown-trigger" type="button" aria-expanded="false">
+          Cursos
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#registro">Desarrollo Web</a>
+          <a href="#registro">Inteligencia Artificial</a>
+          <a href="#registro">Diseño UI/UX</a>
+          <a href="#registro">Ciencia de Datos</a>
         </div>
-      </header>
-
-      <main>
-        <section class="intro">
-          <p>Acceso inicial</p>
-          <h2>Aprende desde un campus vivo.</h2>
-          <p>
-            Ingresa al entorno digital del campus y registra tus datos para
-            comenzar tu experiencia académica.
-          </p>
-        </section>
-      </main>
-
-      <button class="wave-button primary-action" type="button" id="openRegistration">
-        Registrarse e Iniciar Sesión
-      </button>
-    </section>
-
-    <section class="registration" id="registro" aria-label="Formulario de registro">
-      <div class="form-layout">
-        <section class="form-copy">
-          <h2>Registro de acceso</h2>
-          <p>
-            Completa tus datos obligatorios para preparar tu entrada al Campus
-            Tlamatiliztli. El registro se conserva temporalmente en este navegador.
-          </p>
-        </section>
-
-        <form id="registrationForm" novalidate>
-          <label>
-            Nombre completo
-            <input
-              id="fullName"
-              name="fullName"
-              type="text"
-              autocomplete="name"
-              required
-            />
-          </label>
-
-          <label>
-            País
-            <select id="country" name="country" required>
-              <option value="">Selecciona tu país</option>
-              <option>Argentina</option>
-              <option>Bolivia</option>
-              <option>Brasil</option>
-              <option>Canadá</option>
-              <option>Chile</option>
-              <option>Colombia</option>
-              <option>Costa Rica</option>
-              <option>Cuba</option>
-              <option>Ecuador</option>
-              <option>El Salvador</option>
-              <option>España</option>
-              <option>Estados Unidos</option>
-              <option>Guatemala</option>
-              <option>Honduras</option>
-              <option>México</option>
-              <option>Nicaragua</option>
-              <option>Panamá</option>
-              <option>Paraguay</option>
-              <option>Perú</option>
-              <option>República Dominicana</option>
-              <option>Uruguay</option>
-              <option>Venezuela</option>
-            </select>
-          </label>
-
-          <label>
-            Dirección de correo electrónico
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required
-            />
-          </label>
-
-          <button class="wave-button submit" type="submit">Enviar</button>
-          <p class="message" id="formMessage" role="status" aria-live="polite"></p>
-        </form>
       </div>
-    </section>
+    </div>
+    <div class="sticky-search">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" placeholder="Buscar en el campus..." />
+    </div>
+    <div class="sticky-actions">
+      <button class="btn-primary-sm" type="button" id="stickyOpenRegistration">Ingresar</button>
+      <a class="btn-secondary-sm" href="https://discord.gg" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+  </header>
 
-    <script src="codigo.js"></script>
-  </body>
+  <section class="screen" aria-label="Interfaz inicial">
+    <header>
+      <div class="brand" aria-label="Campus Tlamatiliztli">
+        <img class="brand-mark" src="assets/T-Logo.png" alt="" aria-hidden="true" />
+        <!-- <div>
+          <h1>Campus Tlamatiliztli</h1>
+          <span>Conocimiento conectado</span>
+        </div> -->
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h2>Aprende desde un campus vivo.</h2>
+        <p>
+          Ingresa al entorno digital de Campus Tlamatiliztli y registra tus datos para comenzar tu experiencia académica.
+        </p>
+        <div class="cta-buttons">
+          <button class="btn-primary" type="button" id="openRegistration">Ingresar</button>
+          <a class="btn-secondary" href="https://discord.gg" target="_blank" rel="noopener noreferrer">
+            <svg class="discord-icon" viewBox="0 0 142.83 96.36">
+              <path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.87-.64,1.71-1.32,2.51-2a75.47,75.47,0,0,0,73,0c.8.7,1.64,1.38,2.51,2a68.43,68.43,0,0,1-10.5,5A77.7,77.7,0,0,0,111.83,96.36a105.73,105.73,0,0,0,31-18.83C145,54.65,139.5,31.58,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/>
+            </svg>
+            Discord
+          </a>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <section class="registration" id="registro" aria-label="Formulario de registro">
+    <div class="form-layout">
+      <section class="form-copy">
+        <h2>Registro de acceso</h2>
+        <p>
+          Completa tus datos obligatorios para preparar tu entrada al Campus
+          Tlamatiliztli. El registro se conserva temporalmente en este navegador.
+        </p>
+      </section>
+
+      <form id="registrationForm" novalidate>
+        <label>
+          Nombre completo
+          <input id="fullName" name="fullName" type="text" autocomplete="name" required />
+        </label>
+
+        <label>
+          País
+          <select id="country" name="country" required>
+            <option value="">Selecciona tu país</option>
+            <option>Argentina</option>
+            <option>Bolivia</option>
+            <option>Brasil</option>
+            <option>Canadá</option>
+            <option>Chile</option>
+            <option>Colombia</option>
+            <option>Costa Rica</option>
+            <option>Cuba</option>
+            <option>Ecuador</option>
+            <option>El Salvador</option>
+            <option>España</option>
+            <option>Estados Unidos</option>
+            <option>Guatemala</option>
+            <option>Honduras</option>
+            <option>México</option>
+            <option>Nicaragua</option>
+            <option>Panamá</option>
+            <option>Paraguay</option>
+            <option>Perú</option>
+            <option>República Dominicana</option>
+            <option>Uruguay</option>
+            <option>Venezuela</option>
+          </select>
+        </label>
+
+        <label>
+          Dirección de correo electrónico
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </label>
+
+        <button class="wave-button submit" type="submit">Enviar</button>
+        <p class="message" id="formMessage" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <script src="codigo.js"></script>
+</body>
+
 </html>
